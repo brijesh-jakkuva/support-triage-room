@@ -128,6 +128,55 @@ support-triager (Codex, auto on, bypass off) + jbrijeshkumar.
   original template (a fresh agent, not an update). Decision pending
   with the user.
 
+## Delete-and-recreate attempt — Nov 5 23:56 EST to Nov 6 00:13 EST
+- User approved at 23:56 EST: "Yes, delete and recreate the triager
+  fresh from the template." Delete-and-recreate request sent to
+  switch-buddy-admin ~23:57 EST with the full original spec (Codex,
+  auto on, bypass off, fresh folder, four-part triage in the chat
+  where the ticket was posted, corrected severity rule, all
+  guardrails, triage-log.md audit log, bind to the existing
+  support-triage room / C0CENU6FQNS, no duplicate channel).
+- Switch-buddy replied ~00:00 EST, "Used 7 tools 3 failed". Expanded
+  task list: get_my_context, connect_to_room, request_agent_deletion
+  **Failed**, get_room_detail **Failed**, update_agent_detail,
+  list_managed_agents, post_message **Failed**. NO create-agent call.
+  The deletion did NOT go through; no new agent was created.
+  Support-triager showed **Stopped** in the sidebar afterwards.
+- Follow-up sent to switch-buddy ~00:01 EST: explain why the
+  deletion failed (does it need the user in Console?) and START the
+  triager again. Switch-buddy replied ~00:04 EST, "Used 4 tools 1
+  failed": update_agent_detail, list_managed_agents,
+  connect_to_room (no failure marker — first time connect_to_room
+  did NOT fail), post_message **Failed**. After this round the
+  sidebar showed support-triager **Running** again. Switch-buddy
+  gave no prose explanation of the deletion failure.
+- Agent settings checked ~00:11 EST (read-only): Codex, auto on,
+  bypass off, Anyone can talk. Instructions STILL begin "You are
+  support-triager. When you receive a support ticket, reply directly
+  in the chat where that ticket was posted." — the revert did NOT
+  fully restore the original Nov 4 wording; the "reply directly"
+  phrasing from the silencing fix is still there (the "never use
+  post_message" clause itself is gone). Settings page has a
+  **Delete agent** button (Console UI delete route exists).
+- Test 3 RE-POSTED in direct chat ~00:08 EST (posted twice due to a
+  Mac session hiccup between the type and the send). STILL NO REPLY
+  after 3+ minutes (checked 00:10–00:13 EST). QA SCORE Test 3
+  re-post #2: **FAIL — no response**. The agent is Running but
+  silent in direct chat even after the restart round.
+- UI delete attempted ~00:13 EST: clicked **Delete agent** in Agent
+  settings (user-approved delete). No confirmation dialog was
+  visible in the accessibility view; the Mac went OFFLINE moments
+  later, before the result could be confirmed. **Delete outcome
+  UNVERIFIED — check Your Agents when the Mac is back: if
+  support-triager is gone, ask switch-buddy to create it fresh from
+  the template; if it is still there, delete it from the UI and then
+  recreate.**
+- State at 00:13 EST Nov 6: triager unresponsive in both surfaces
+  (Slack: "Not connected to a room" x3; direct chat: silent since
+  the 23:17 instruction change through every fix, revert, restart
+  and re-post). The clean-recreate path is still the best shot, but
+  it depends on the UI delete working.
+
 ## Tests 2–5 + bypass negative test
 - **NOT RUN.** They need the triager able to post its four-part reply
   in the room first. Run them after the session binding is fixed and
