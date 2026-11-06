@@ -32,7 +32,9 @@ For each ticket, the reply passes only if every box is ticked.
 ## Escalation
 - [ ] Payment / refund / double-charge: High, holding reply, no refund promise
 - [ ] Security / unauthorised access / confirmed data loss: Critical, escalate now,
-      holding reply, no reassurance that data is safe
+      holding reply, no reassurance that data is safe. An unfamiliar login is
+      unauthorised access and is Critical even when it is not yet confirmed
+      whether any data was taken — "unconfirmed" never downgrades it to High.
 - [ ] Reported or apparent data loss, no security incident: High, escalate
       holding-only, no claim the data is recoverable or safe
 - [ ] Vague tickets: ask, don't diagnose

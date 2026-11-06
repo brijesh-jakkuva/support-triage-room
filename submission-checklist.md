@@ -27,16 +27,16 @@ Source: https://www.devtoolsacademy.com/hackathons/flip-the-switch
 
 | Item | Status |
 |---|---|
-| Public repository | **NOT CREATED.** `~/workspace/support-triage-room/` is not a git repository (checked 20:26 UTC Nov 5: `git status` → "not a git repository"). No GitHub repo for this project is mentioned anywhere in the local files or memory. The project plan says "submit the folder" — the official requirement is a public repo, so a repo still has to be created and the folder pushed to it. |
+| Public repository | **LIVE.** https://github.com/brijesh-jakkuva/support-triage-room — public, main branch. Test results through Nov 6, 00:52 EST and the Test 5 template fix are committed locally Nov 6, 07:15 EST and awaiting push (push via the GitHub API helper; plain `git push` gets a 401 from this VM). |
 | Secrets check for pushing | **Clean, as far as a file search goes.** A search of the folder for token patterns found no usable credential values — only token prefixes (`xoxb-`, `xapp-`) in the setup guide and the truncated `xoxe.xoxp-…` reference in the run pack / project plan. Do a final `git status` / diff review before the first push anyway, and never add Console credential files. |
 | Demo video (~3 min, `demo-script.md`) | Not recorded. Blocked on Tests 2–5 + bypass passing and on at least one approved draft, so `triage-log.md` exists to show in the 2:30–3:00 slot. No `triage-log.md` in the folder yet (expected — it is only created when a draft is approved). |
-| README | Still has the old Mattermost-first setup paragraph. Fix is drafted in `blog-outline-corrected-draft.md` appendix, awaiting approval (already surfaced to the user Nov 5, 12:13 EST; no reply yet). |
+| README | **Fixed Nov 5, 22:36 EST** — Mattermost-first paragraph replaced with the personal-Slack wording; pushed to the public repo. |
 | Blog post (Best Blog) | Outline only — corrected draft ready, original untouched. Writing is scheduled Fri Nov 6. Do not publish until the room-binding question resolves one way or the other (full Slack triage, or honest direct-chat demo + documented bug). |
-| Tests 2–5 + bypass | Not run anywhere yet. Run pack (`today-run-pack.md`) is ready; already queued for delivery. |
-| Fix-or-pivot decision | Still open since 02:08 EST Nov 5: one restart/recreate attempt for support-triager, then pivot to Console direct chat. |
-| Severity wording | Contradiction found (template/QA say data loss = Critical; corpus Test 1 expects High). Exact fix drafted in `severity-fix-draft.md`, awaiting approval — apply before recreating the triager. |
+| Tests 2–5 + bypass | **Mostly done with the fresh triager (Nov 6, 00:31–00:48 EST): Test 3 ✅, Test 4 ✅, bypass ✅, Test 5 ❌ severity only (High, should be Critical — template wording fixed, re-run pending). Test 2 not yet re-run with the fresh agent; Test 1 in Slack not yet tried with it.** |
+| Fix-or-pivot decision | **Resolved.** Pivot to Console direct chat happened Nov 5, 23:10 EST; fresh triager recreated Nov 6, 00:26 EST passes Tests 3, 4 and bypass there. Slack Test 1 with the fresh agent is the one remaining try. |
+| Severity wording | **Fixed and applied Nov 5, 22:36 EST** (Critical only for security/confirmed loss; apparent loss = High). Test 5 refinement added Nov 6, 00:47 EST ("unconfirmed never downgrades"); re-run pending. |
 | Exposed App Configuration Token | Still unverified whether the `xoxe.xoxp-…` token pasted in chat Nov 5, 01:11 EST was deleted on the Slack API apps page. Mac offline, not re-checked. |
-| Submission portal / form | **Not confirmed.** The WeMakeDevs hackathon page's Registration section did not load in the text fetch (read 20:26 UTC: "Loading… One moment. Pulling up this hackathon."). Do not assume a URL. Confirm where to submit from the registration confirmation / WeMakeDevs dashboard before Sat morning. |
+| Submission portal / form | **FOUND Nov 6, 07:12 EST.** https://www.wemakedevs.org/hackathons/switch/submit — resolved from the WeMakeDevs LinkedIn post's "Submit now" short link (lnkd.in/gPvrWnUZ). The page itself has not been opened successfully yet, so its fields are unverified — sign in with the WeMakeDevs account and check it before Saturday morning. |
 
 ## Suggested order (does not need the triager fixed first)
 

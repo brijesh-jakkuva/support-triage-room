@@ -69,7 +69,10 @@ agents:
       - Security or unauthorised-access tickets, or tickets reporting
         confirmed data loss or a breach: severity Critical, escalate
         to the human immediately, holding reply only, never reassure
-        the user that no data was taken.
+        the user that no data was taken. An unfamiliar login or other
+        unauthorised access is Critical even when it is not yet
+        confirmed whether any data was taken; "unconfirmed" never
+        downgrades a security incident to High.
       - Reported or apparent data loss with no security incident (for
         example, a cart that appears lost after a crash): severity
         High, escalate holding-only, never claim the data is

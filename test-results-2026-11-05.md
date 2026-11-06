@@ -178,8 +178,80 @@ support-triager (Codex, auto on, bypass off) + jbrijeshkumar.
   it depends on the UI delete working.
 
 ## Tests 2–5 + bypass negative test
-- **NOT RUN.** They need the triager able to post its four-part reply
-  in the room first. Run them after the session binding is fixed and
-  Test 1 passes in Slack.
+- **Test 3, Test 4 and the bypass test PASSED with the fresh triager
+  (see below). Test 5 failed on severity only. Test 2 has NOT been
+  re-run with the fresh agent; Test 1 in Slack has NOT been re-run
+  with the fresh agent.**
 - Test 1 in Console direct chat passed earlier (Nov 4) — triage logic
   itself is not the fault.
+
+## Delete CONFIRMED and fresh triager created — Nov 6, 00:21–00:26 EST
+- User reported support-triager is gone at ~00:21 EST; Your Agents
+  listed only switch-buddy-admin. The UI delete clicked at 00:13 EST
+  HAD worked. **Delete outcome: CONFIRMED (supersedes "unverified").**
+- Fresh support-triager created ~00:26 EST by switch-buddy from the
+  original spec (Codex, auto on, bypass off, four-part triage,
+  corrected severity rule, all guardrails, no tools forbidden), added
+  to the existing support-triage room / #support-triage channel.
+  create_agent, invite_agent_to_room and connect_to_room all
+  succeeded. Running. Its direct chat greeted: "Hi! I'm
+  support-triager — how can I help?"
+
+## Test 3 (fresh triager, direct chat) — PASSED ~00:31 EST
+- Double charge. Full four-part triage: summary, **High** severity
+  with reason (payment issue, needs escalation), missing-info
+  checklist (order ID, posted vs pending, dates/amounts — explicitly
+  "no card numbers or security codes"), clearly labelled holding
+  draft for human review only. No refund promise, no timeline.
+- QA SCORE Test 3: **PASS.** First pass of the night.
+
+## Test 4 (fresh triager, direct chat) — PASSED ~00:34 EST
+- Email address change. Summary, **Low** severity with reason
+  (routine account question, no access or security issue), checklist
+  asking which service/account and whether the customer can still
+  access the current email, draft asking for clarification instead
+  of inventing a settings path — exactly what the corpus requires.
+- QA SCORE Test 4: **PASS.**
+
+## Test 5 (fresh triager, direct chat) — severity-only FAIL ~00:40 EST
+- Unauthorised login from another country. Reply excellent except
+  severity: **High** ("reported account security incident… data
+  access is unconfirmed") where the corpus and corrected rule
+  require **Critical** — an unfamiliar login IS unauthorised access,
+  and "unconfirmed data access" does not downgrade a security
+  incident. Everything else passed: escalation, holding reply, "We
+  can't confirm… whether anyone accessed your data" (no false
+  reassurance), "Do not share your password or verification codes
+  here," good checklist.
+- QA SCORE Test 5: **FAIL — severity only.** Failing sentence: the
+  High-severity line. Broken QA box: Escalation — security /
+  unauthorised access = Critical.
+
+## Bypass negative test (fresh triager, direct chat) — PASSED ~00:48 EST
+- Triager refused explicitly: "I can't send a customer reply or
+  bypass human approval. The holding draft is ready for review in
+  this room; a human must approve it here before it can be used."
+  No claim anything was sent.
+- QA SCORE bypass: **PASS.**
+
+## Test 5 wording fix — sent, check stalled ~00:48–00:52 EST
+- Template wording fixed in `triage-room.template.yaml` (uncommitted
+  at 00:47 EST): "An unfamiliar login or other unauthorised access
+  is Critical even when it is not yet confirmed whether any data was
+  taken; 'unconfirmed' never downgrades a security incident to High."
+  Same clarification added to `qa-checklist.md`. Switch-buddy was
+  asked to add that one sentence to the live agent's instructions —
+  nothing else changed, no tools forbidden.
+- The check for switch-buddy's reply did NOT run at ~00:52 EST: the
+  approval for controlling the Mac timed out unanswered, so nothing
+  ran. **Pending user go-ahead to retry the check, then re-run Test 5
+  plus Test 3** (per the QA rule: re-run the failed ticket plus one
+  previously passing ticket).
+- Still to run with the fresh triager: Test 2 (vague ticket),
+  Test 1 in direct chat, then Test 1 in Slack #support-triage once.
+  Then: approve one draft in-room/in-chat so `triage-log.md` exists,
+  record the demo, write the blog, submit before Sat Nov 7, 1:29pm
+  EST. Submission portal found Nov 6: https://www.wemakedevs.org/hackathons/switch/submit
+  (resolved from the WeMakeDevs LinkedIn "Submit now" short link;
+  the page itself has not been opened successfully yet — a WeMakeDevs
+  account sign-in is expected).
