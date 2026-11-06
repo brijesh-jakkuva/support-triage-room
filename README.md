@@ -1,5 +1,9 @@
 # Support Triage Room — Flip the Switch Hackathon
 
+> **Current status, what's working, what's broken, and how to pick this up:
+> read [`STATUS.md`](STATUS.md) first.** It is the handover — the README
+> below is the pitch, `STATUS.md` is the truth as of Nov 6, 00:19 EST.
+
 ## The problem, in one line
 Support teams want AI speed, but they cannot let an AI send a wrong,
 invented, or premature reply to a real customer.
