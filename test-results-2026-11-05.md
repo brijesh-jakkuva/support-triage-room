@@ -57,6 +57,77 @@ support-triager (Codex, auto on, bypass off) + jbrijeshkumar.
   pivot to the Console direct-chat demo, which passed Test 1 on Nov 4,
   and document this Slack room-binding bug in the blog.
 
+## Test 1 re-post AFTER restart/recreate — 11:04:24 PM
+- Restart requested 22:58 EST Nov 5 via switch-buddy (one attempt only,
+  with the corrected severity rule). Switch-buddy replied "Used 27
+  tools 6 failed" (~23:01) after update_agent_detail calls; its full
+  reply text was not readable in Console. Switch-buddy also posted in
+  #support-triage at 11:00:07 PM asking the triager to initialize a
+  fresh session and confirm binding, and !assign-agent at 11:00:51 PM.
+- Triager thread reply, 11:04:25 PM (1 second after the ticket),
+  verbatim: "I read the latest room context and retried the triage
+  post immediately after connecting. Switch still returned "Not
+  connected to a room," so the triage and holding-only draft did not
+  reach the room. The report is **High severity**: the customer
+  reports an apparently lost cart without a security incident. It
+  should be escalated as data loss; cart recovery status is unknown."
+  Tasks: Switch session, read_context, connect_to_room, post_message
+  (failed). Worked 15s, 3 tool calls.
+- QA SCORE Test 1 (Slack, third attempt): **FAIL** — severity High is
+  correct under the corrected rule (apparent loss, no security
+  incident), but still no summary, no checklist, no draft text. The
+  restart/recreate attempt did NOT fix posting to the room.
+- PIVOT (per the one-attempt-then-pivot guardrail): run Tests 2-5 +
+  bypass in Console direct chat with support-triager, where Test 1
+  passed Nov 4. Never present direct-chat footage as Slack-room
+  footage; document the Slack binding bug in the blog.
+
+## Test 2 in Console direct chat — 23:10 EST
+- Posted "app not working please help" in the support-triager direct
+  chat. Reply finished with "Used 6 tools 4 failed" and NO message
+  body at all — no summary, no severity, no checklist, no draft.
+  Expanded task list: switch.read_context Failed, switch.connect_to_room
+  (failed), switch.read_context Failed, switch.post_message Failed,
+  switch.connect_to_room, switch.post_message Failed.
+- QA SCORE Test 2 (direct chat): **FAIL**. New finding: the
+  RECREATED triager no longer answers in direct chat either — it now
+  tries to route the triage to the room (connect_to_room /
+  post_message) from any context and fails with the same binding
+  error. The Nov 4 direct-chat pass came from the ORIGINAL triager;
+  the restart changed its behaviour.
+- Follow-up sent 23:1x EST: "Please reply here in this chat with the
+  triage for the ticket above: one-line summary, severity with reason,
+  missing-info checklist, and draft reply." — result pending; if it
+  delivers, the pivot path works with in-chat framing, if not, the
+  agent is broken for the demo and the next decision is a fresh
+  recreation with original in-chat behaviour vs. accepting a
+  documentation-only submission.
+
+## Test 3 in Console direct chat — 23:41 EST (after instruction fix)
+- Switch-buddy's instruction fix (update_agent_detail, no failure
+  marker) was applied ~23:17 EST, but Test 3 ("you charged me twice
+  for same order!!! refund now or I report you") got NO reply at all
+  after 3+ minutes. A plain hello probe (23:43) also got no reply.
+  QA SCORE Test 3 (direct chat): **FAIL — no response**.
+- Diagnosis: the "never use connect_to_room/post_message" clause
+  likely silenced the agent entirely (its replies may be delivered
+  through post_message). Revert requested from switch-buddy ~23:46
+  EST: restore the original Nov 4 instructions, do NOT forbid
+  connect_to_room/post_message, restart the agent if its session is
+  stuck, confirm it answers in direct chat again. Re-test with Test 3
+  after the revert.
+- Revert applied ~23:49 EST (switch-buddy "Used 9 tools 2 failed";
+  update_agent_detail ran 3x with no failure markers; the 2 failures
+  were read_context/post_message room checks). Test 3 RE-POSTED in
+  direct chat 23:51 EST — STILL NO REPLY after 4+ minutes (checked
+  23:55). QA SCORE Test 3 re-post: **FAIL — no response**.
+- State at 23:55 EST Nov 5: the triager is unresponsive in BOTH
+  surfaces (Slack room: "Not connected to a room" x3; direct chat:
+  silent since the instruction change, revert did not restore it).
+  Next option: full delete-and-recreate of support-triager from the
+  original template (a fresh agent, not an update). Decision pending
+  with the user.
+
 ## Tests 2–5 + bypass negative test
 - **NOT RUN.** They need the triager able to post its four-part reply
   in the room first. Run them after the session binding is fixed and
