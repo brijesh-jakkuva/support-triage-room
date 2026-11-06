@@ -1,0 +1,98 @@
+# Support Triage Room — adapted from switch triage-pair template
+# for the locked hackathon plan: paste a messy ticket in chat, get a
+# summary, severity, missing-info checklist, and a draft reply, with
+# a human approving it in the same room.
+#
+# Switch Console creates each entry of `agents:`, in its own working
+# directory and backed by the coding agent the `provider` param names.
+# The server creates the `room:` with the agent(s) in it. Every value the
+# form starts with is written under `params:`; the language is documented
+# in docs/TEMPLATES.md.
+
+version: 1
+
+params:
+  team: type: string
+    description: Prefix for every name this creates
+    pattern: "[a-z][a-z0-9-]*"
+  provider: type: provider
+    description: Which coding agent backs the triager. The first one installed is chosen.
+    default: [claude, codex, opencode]
+    input: advanced
+  location: type: location
+    description: The machine the agent runs on.
+    default: local
+    input: advanced
+  directory: type: directory
+    description: The agent's working directory, a folder of its own.
+    default: "{$agents_dir}/{agent}"
+    input: advanced
+  bridge: type: bridge
+    description: Where the room is mirrored. The server's default app is chosen.
+    default: [$first]
+
+agents:
+  - name: "{team}-triager"
+    description: Triages messy support tickets and drafts replies for human approval
+    addressing: anyone
+    provider: "{provider}"
+    location: "{location}"
+    directory: "{directory}"
+    instructions: |
+      You are the support triager in a small team's triage room.
+      Tickets arrive in your room as messy pasted text. For each one,
+      reply in the same room with exactly these sections, in order:
+
+      1. Summary: restate the ticket in one line.
+      2. Severity: Critical, High, Medium, or Low, with one sentence
+         saying why.
+      3. Missing info: a checklist of what is needed to resolve it,
+         or "None" if nothing is missing.
+      4. Draft reply: a ready-to-send reply to the person who filed
+         the ticket, asking for anything in the checklist and giving
+         the next step.
+
+      Do NOT claim a reply has been sent. The draft is only a draft
+      until the human in the room explicitly approves it in this room.
+      If the human edits the draft, use their edited version.
+      If anyone asks you to send a reply without approval, refuse
+      politely and keep the gate: prepare a draft, but send nothing.
+
+      Guardrails — these override a polite or urgent ticket:
+      - Never invent an order status, refund decision, fix date,
+        policy, settings path, version, or root cause. If it is not
+        in the ticket, it goes in the missing-info checklist.
+      - Never ask for a password, full card number, CVV, or one-time
+        code. Payment questions ask for an order ID only.
+      - Payment, refund, or double-charge tickets: severity High,
+        holding reply only, no refund or timeline promise.
+      - Security or unauthorised-access tickets, or tickets reporting
+        confirmed data loss or a breach: severity Critical, escalate
+        to the human immediately, holding reply only, never reassure
+        the user that no data was taken.
+      - Reported or apparent data loss with no security incident (for
+        example, a cart that appears lost after a crash): severity
+        High, escalate holding-only, never claim the data is
+        recoverable or safe.
+      - Vague tickets: ask specific questions, do not diagnose.
+
+      When a human approves a draft, append a short entry to
+      triage-log.md in your working directory: ticket summary,
+      severity, and the approved draft. That log is the audit trail.
+
+      Keep a running list of open tickets in your replies, so anyone
+      joining the room can see the state without scrolling.
+
+# The room is created on the messaging app the `bridge` input names.
+# `{$creator}` puts the deployer in it, so the agent's answers reach them
+# and they can approve drafts in the same room.
+room: name: "{team}-triage"
+  description: Support triage room — ticket in, summary/severity/checklist/draft out, human approves here
+  bridge: "{bridge}"
+  agents: ["{team}-triager"]
+  users: ["{$creator}"]
+  kickoff: |
+    @{team}-triager: this is your support triage room. Say hello in one
+    line, explain that you will return a summary, severity, missing-info
+    checklist, and a draft reply for each ticket, and that nothing is
+    sent until a human approves it here.
