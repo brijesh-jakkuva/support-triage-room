@@ -11,6 +11,8 @@ entered in **Track 01 — Best Business Workflow**, with a companion blog post f
 
 🎥 **Demo video (2 min, with voice-over):** [Watch on YouTube](https://youtu.be/BuYkjm2ip-Q)
 
+📝 **Blog post (Best Blog):** [I Built a Support Room Where the AI Drafts and a Human Decides](https://dev.to/brijeshjakkuva/i-built-a-support-room-where-the-ai-drafts-and-a-human-decides-2pj4)
+
 ## The problem
 
 Support teams want AI speed, but they cannot let an AI send a wrong, invented, or
@@ -167,7 +169,7 @@ in a chat channel. Setup notes for the personal Slack workspace are in
 | `qa-checklist.md` | The pass/fail checklist every reply is scored against |
 | `test-results-2026-11-05.md` | The full dated test log, passes and failures |
 | `demo-script.md` | The 3-minute demo run-through, filmed in the Slack room |
-| `blog-draft.md` | The Best Blog draft — the honest build story, including what broke |
+| `blog-draft.md` | The Best Blog draft — the honest build story, including what broke; published on Dev.to: https://dev.to/brijeshjakkuva/i-built-a-support-room-where-the-ai-drafts-and-a-human-decides-2pj4 |
 | `blog-outline-corrected-draft.md` | The corrected blog outline the draft was built from |
 | `slack-personal-workspace-setup.md` | How the personal Slack workspace and app were set up |
 | `saturday-run-sheet.md` | The run sheet for submission day |
