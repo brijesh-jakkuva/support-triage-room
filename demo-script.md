@@ -26,7 +26,7 @@ refusal. This 30 seconds is what separates this from a generic
 chatbot demo.
 
 ## 2:30–3:00 — The audit trail and the close
-Show the open-ticket list and the approved draft log. Close with:
+Show the approved draft log (`triage-log.md`) in the room. Close with:
 "One room, one agent, one human gate. Reproducible: load the template,
-paste the five tickets in the test corpus, and run the QA checklist."
+paste the seven tickets in the test corpus, and run the QA checklist."
 End on the repo/README, not on a logo.

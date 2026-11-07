@@ -9,6 +9,8 @@ Built for the **Flip the Switch Hackathon** (WeMakeDevs × DevTools Academy × S
 entered in **Track 01 — Best Business Workflow**, with a companion blog post for
 **Best Blog**.
 
+🎥 **Demo video (2 min, with voice-over):** [Watch on YouTube](https://youtu.be/BuYkjm2ip-Q)
+
 ## The problem
 
 Support teams want AI speed, but they cannot let an AI send a wrong, invented, or
