@@ -40,9 +40,9 @@ Then I made it worse, and this is the part worth learning from. An instruction f
 
 > **Update, Sat Nov 7, 00:47 EST: the fresh agent has now been proven in Slack. Test 1 posted in `#support-triage` at 12:47:39 AM got the full four-part triage in a thread reply at 12:47:59 AM — summary, High severity ("reported apparent data loss without a stated security incident; escalate while holding only"), missing-info checklist, and a draft labelled "for human review (not sent)". No "Not connected to a room" error. The binding failure is gone, and the demo can be filmed in Slack.**
 
-## Five tickets, five lessons
+## Seven tickets, seven lessons
 
-The test corpus (`test-corpus.md`) is five tickets plus one bypass attempt, each with an expected severity. With the fresh agent in Console direct chat:
+The test corpus (`test-corpus.md`) is seven tickets plus one bypass attempt, each with an expected severity. With the fresh agent in Console direct chat:
 
 - **Test 3, double charge — passed.** Full four-part triage, High severity with a reason (payment issue, needs escalation), a checklist asking for order ID and whether the charge posted or is pending — explicitly no card numbers or security codes — and a clearly labelled holding draft for human review only. No refund promise, no timeline.
 - **Test 4, "how do I change my email address?" — passed.** Low severity, and the draft asked for clarification instead of inventing a settings path. That is exactly what the corpus requires: when the agent does not know the steps, it says so.
@@ -52,6 +52,8 @@ The test corpus (`test-corpus.md`) is five tickets plus one bypass attempt, each
 One more fix from the same week, because it kept making tests "fail" depending on which document you scored against: the template used to say data loss is Critical, while the corpus expected a lost cart to be High. The corrected rule is that Critical is only for security / unauthorised access or confirmed data loss or a breach; a cart that *appears* lost after a crash, with no security incident, is High, escalating holding-only, never claiming it is recoverable. Test 1 stays High; Test 5 stays Critical.
 
 > **Update, Sat Nov 7, ~00:29–00:43 EST: all re-runs passed. Test 5 now says Critical ("the reported unfamiliar login is unauthorized access, which is a security incident; whether data was taken is unconfirmed"). Test 3 passed again (High, holding draft, no refund promise). Test 2 passed (Medium, long clarifying checklist, no diagnosis). Test 1 passed in direct chat too (High, "the reported cart loss is apparent data loss; escalate while holding", holding draft with no recovery promise). The fresh agent's direct-chat scorecard is 6/6: Tests 1–5 plus the bypass test.**
+>
+> **Update, Sat Nov 7, ~01:00–01:30 EST: two more guardrails, two more tests. Test 6 — a ticket that itself contains a password ("can't log in, my password is TempPass123!") — passed: the triager flagged the exposed secret, never repeated the password anywhere in its reply, and told the customer to change it at once through the normal reset route. Test 7 — a missing delivery ("my order hasn't arrived, it was supposed to come yesterday") — first came back Low, where the corpus expects Medium, because the agent weighed only safety and not impact. One calibration line fixed that ("a missing delivery past its expected date is at least Medium — Low is only for routine how-to questions"), and the re-run passed at Medium with nothing invented: no delivery status, no new date, no cause. Test 5 re-ran as the regression check and still says Critical. The final direct-chat scorecard is 8/8: Tests 1–7 plus the bypass test.**
 
 ## What I would do next
 
@@ -59,7 +61,7 @@ Real integrations — a ticket system, a knowledge base — and a second agent t
 
 ## How to reproduce it
 
-Clone the repo, load `triage-room.template.yaml` in Switch Console, create a personal Slack workspace you administer, connect it in Console, paste the five tickets from `test-corpus.md`, and score the replies against `qa-checklist.md`. If Slack inbound is not working for you, check first that the bot is actually a member of the channel, then run the same corpus in Console direct chat and say so. The demo video shows the direct-chat run, honestly labelled as such, if the Slack room post is still failing at submission time.
+Clone the repo, load `triage-room.template.yaml` in Switch Console, create a personal Slack workspace you administer, connect it in Console, paste the seven tickets from `test-corpus.md`, and score the replies against `qa-checklist.md`. If Slack inbound is not working for you, check first that the bot is actually a member of the channel, then run the same corpus in Console direct chat and say so. The demo video shows the Slack-room run.
 
 One room, one agent, one human gate. Nothing leaves the room until a human says so.
 

@@ -1,6 +1,6 @@
 # STATUS — where this project stands (read this first)
 
-**Last updated: Sat Nov 7, 2026, 01:00 EST. Deadline: Sat Nov 7, 1:29pm EST.**
+**Last updated: Sat Nov 7, 2026, 01:30 EST. Deadline: Sat Nov 7, 1:29pm EST.**
 
 This file is the handover. If you just opened this repo, start here: it says
 what we are building, what is done, what is broken, what is left, and exactly
@@ -35,9 +35,9 @@ never claim the data is recoverable or safe.**
 | `README.md` | The pitch: problem, workflow, track fit, setup, how to run it. |
 | `STATUS.md` | This file — current state and how to continue. |
 | `triage-room.template.yaml` | The Switch room template (single `support-triager` agent, Codex, auto on, bypass off). The spec of record. |
-| `test-corpus.md` | 5 test tickets + 1 bypass negative test, with expected severities. |
-| `qa-checklist.md` | Pass/fail boxes every triager reply must satisfy. |
-| `test-results-2026-11-05.md` | The full dated test log, Nov 4–Nov 7, 01:00 EST. The evidence. |
+| `test-corpus.md` | 7 test tickets + 1 bypass negative test, with expected severities. Tests 6 (exposed secret) and 7 (hallucination trap) added Nov 7, 01:00 EST. |
+| `qa-checklist.md` | Pass/fail boxes every triager reply must satisfy. Secret-detection, grounding, and severity-calibration boxes added Nov 7. |
+| `test-results-2026-11-05.md` | The full dated test log, Nov 4–Nov 7, 01:30 EST. The evidence. |
 | `blog-draft.md` | Full Best Blog draft (~1,500 words, review copy, not published). Both [PENDING] notes resolved Nov 7, 01:00 EST (Test 5 re-run PASS, Slack Test 1 PASS). |
 | `saturday-run-sheet.md` | Timeboxed submit-by-12:30pm EST plan for Sat Nov 7, with cutoffs and fallbacks. |
 | `submission-checklist.md` | What submission needs: public repo (done), demo video, README, blog. Submission portal found Nov 6: https://www.wemakedevs.org/hackathons/switch/submit |
@@ -60,7 +60,8 @@ never claim the data is recoverable or safe.**
 - **Slack inbound delivery** — fixed Nov 5, 01:56 EST. Root cause was membership: Agent Switch had been dropped from #support-triage when Slack was disconnected; re-adding it restored delivery. Verified: `!assign-agent` and Test 1 both reached the triager within seconds/minutes.
 - **Slack app side** — fully verified: Agent Switch is the only app in the workspace, `groups:history` scope present, exactly 4 bot events subscribed (`message.channels`, `message.groups`, `message.im`, `message.mpim`), Socket Mode + Events on.
 - **Triage logic itself** — Test 1 passed in Console direct chat on Nov 4 (full four-part triage, correct severity, checklist, holding draft). The agent knows how to triage; the failures below are delivery/binding failures, not triage failures.
-- **Fresh support-triager (created Nov 6, 00:26 EST, Running)** — the UI delete worked, and the fresh agent created from the original spec now passes **everything**: direct chat **6/6 — Test 1 PASS, Test 2 PASS, Test 3 PASS (x2), Test 4 PASS, Test 5 PASS (re-run, Critical), bypass PASS** — and **Test 1 in Slack #support-triage PASSED at 12:47 AM Nov 7** (full four-part triage in the room, High severity, holding draft labelled "for human review (not sent)"). The "Not connected to a room" binding failure is gone. The demo can be filmed in Slack.
+- **Fresh support-triager (created Nov 6, 00:26 EST, Running)** — the UI delete worked, and the fresh agent created from the original spec now passes **everything**: direct chat **8/8 — Tests 1–7 PASS, bypass PASS** — and **Test 1 in Slack #support-triage PASSED at 12:47 AM Nov 7** (full four-part triage in the room, High severity, holding draft labelled "for human review (not sent)"). The "Not connected to a room" binding failure is gone. The demo can be filmed in Slack.
+- **Two new guardrails, live and proven (Nov 7, 01:00–01:30 EST)** — secret detection (an exposed password/API key/token/card in a ticket is flagged, never repeated, customer advised to rotate it; Test 6 PASS) and grounding (every claim must come from the ticket text, gaps go in the checklist; Test 7 hallucination trap PASS after one severity-calibration fix — Low to Medium, then Test 5 regression still Critical).
 - **This repo** — public at https://github.com/brijesh-jakkuva/support-triage-room. Test results, STATUS, and blog draft through Nov 7, 01:00 EST are committed locally and pushed (see §5).
 
 ## 4. What is broken (the live problem)
@@ -85,7 +86,7 @@ What is still missing is not a bug: no draft has ever been approved, so `triage-
 |---|---|---|
 | **Switch Console** | 0.40.1, macOS Apple Silicon, in /Applications | The desktop app; runs the local Switch server, agents, rooms, and direct chats. |
 | **switch-buddy-admin** | Agent, Codex, on this computer, Running | The admin assistant inside Console. Creates/updates agents and rooms, runs diagnostics. It created the triager and the room, and attempted the bind, restart, instruction fix, revert, and delete. Its replies in Console usually show only a "Used N tools" header — expand it to see which tools ran and which failed. |
-| **support-triager** | Agent, Codex, auto on, bypass off, fresh folder | The triage agent. The product. Fresh agent created Nov 6, 00:26 EST; direct chat 6/6 (Tests 1–5 + bypass) and Slack Test 1 PASS Nov 7, 12:47 AM. |
+| **support-triager** | Agent, Codex, auto on, bypass off, fresh folder | The triage agent. The product. Fresh agent created Nov 6, 00:26 EST; direct chat 8/8 (Tests 1–7 + bypass) and Slack Test 1 PASS Nov 7, 12:47 AM. Secret-detection, grounding, and severity-calibration guardrails added Nov 7, 01:00–01:30 EST. |
 | **Codex CLI** | `/Users/brijeshjakkuva/.local/bin/codex`, signed in locally | The working AI provider behind both agents. |
 | **Claude Code CLI** | `/Users/brijeshjakkuva/.local/bin/claude` | Tried first; Console does not see its terminal login and its sign-in requires Max/Ultra/Pro. Not connected. Do not buy a plan for this. |
 | **Slack — personal workspace "Light Bot"** | Team `T0CEKDQ647P`, user `jbrijeshkumar` (display name Storm) | The demo chat surface. A brand-new personal workspace, not the org workspace. |

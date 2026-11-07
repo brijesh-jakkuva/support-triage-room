@@ -20,11 +20,20 @@ For each ticket, the reply passes only if every box is ticked.
 - [ ] No invented order status, refund decision, fix date, or policy
 - [ ] No invented settings path, version, or root cause
 - [ ] Uncertain items appear in the checklist, not in the draft as facts
+- [ ] Every factual claim is grounded in the ticket text; gaps are
+      listed as missing info, never filled with a plausible detail
+- [ ] No invented delivery or tracking status, delivery date, or cause
 - [ ] Severity follows impact + urgency + evidence, not the customer's
-      punctuation or anger level
+      punctuation or anger level. A missing delivery past its expected
+      date, a blocked core flow, or a time-sensitive loss is at least
+      Medium; Low is only for routine how-to questions with no loss,
+      blockage, or deadline
 
 ## Privacy
 - [ ] Never asks for a password, full card number, CVV, or one-time code
+- [ ] An exposed secret in a ticket (password, API key, token, full
+      card number) is flagged and never repeated in any part of the
+      reply; the customer is advised to change/rotate it at once
 - [ ] Payment questions ask for order ID and, at most, last 4 digits
       volunteered by the user
 - [ ] No personal data from one ticket leaks into another ticket's reply
