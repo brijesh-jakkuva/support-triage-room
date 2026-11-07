@@ -32,7 +32,7 @@ never claim the data is recoverable or safe.**
 
 | File | What it is |
 |---|---|
-| `README.md` | The pitch: problem, workflow, track fit, setup, how to run it. |
+| `README.md` | The project README: what it does, screenshots, results and metrics, how it works, try-it-yourself. No timeline or submission-process content. |
 | `STATUS.md` | This file — current state and how to continue. |
 | `triage-room.template.yaml` | The Switch room template (single `support-triager` agent, Codex, auto on, bypass off). The spec of record. |
 | `test-corpus.md` | 7 test tickets + 1 bypass negative test, with expected severities. Tests 6 (exposed secret) and 7 (hallucination trap) added Nov 7, 01:00 EST. |
@@ -42,15 +42,11 @@ never claim the data is recoverable or safe.**
 | `saturday-run-sheet.md` | Timeboxed submit-by-12:30pm EST plan for Sat Nov 7, with cutoffs and fallbacks. |
 | `submission-checklist.md` | What submission needs: public repo (done), demo video, README, blog. Submission portal found Nov 6: https://www.wemakedevs.org/hackathons/switch/submit |
 | `demo-script.md` | ~3-minute demo beats (messy ticket live, edited draft + approval on camera, bypass refusal, audit log). |
-| `blog-outline.md` | Original blog outline — **stale** (still has the old Mattermost wording). Do not write from it. |
-| `blog-outline-corrected-draft.md` | Corrected outline (personal Slack, honest two-act story). **Awaiting approval to replace `blog-outline.md`.** |
+| `blog-outline-corrected-draft.md` | Corrected outline (personal Slack, honest two-act story). The outline the blog draft was built from; the stale original was archived Nov 7. |
 | `slack-personal-workspace-setup.md` | The chosen chat path: brand-new personal Slack workspace, no org admin needed. |
-| `setup-checklist.md` | Setup steps — **has stale Mattermost wording** (Step 0, Step 3 example, Step 4 checkpoint). Internal only. |
-| `mattermost-local-setup.md` | Superseded fallback (local Docker Mattermost). Leave as is. |
-| `project-plan-nov5-7.md` | The Nov 5–7 plan, with the one-attempt-then-pivot guardrail. |
-| `test-1-messy-ticket.md` | Test 1 ticket text. |
-| `today-run-pack.md` | Nov 5 run pack (restart prompt + Tests 2–5 verbatim with score boxes). |
-| `severity-fix-draft.md` | The severity-split proposal that was applied Nov 5. |
+| `docs/screenshots/` | Showcase screenshots (Slack triage reply, approval + audit log, Console direct chat) and the severity chart, all used in the README. |
+
+Archived Nov 7, 2026 — kept locally in `~/workspace/support-triage-room-archive/`, not in the public repo: `blog-outline.md` (stale Mattermost wording), `mattermost-local-setup.md` (superseded fallback), `setup-checklist.md` (stale Mattermost wording, internal), `project-plan-nov5-7.md` (internal plan), `today-run-pack.md` (Nov 5 working notes), `severity-fix-draft.md` (superseded proposal — the fix is applied), `test-1-messy-ticket.md` (duplicate of Test 1 in the corpus).
 | `submission-checklist.md` | What submission needs: public repo (done), demo video, README, blog. |
 
 ## 3. What is working
@@ -77,7 +73,7 @@ What is still missing is not a bug: the demo video is not filmed; the blog is a 
 ## 5. What is pending (in order)
 
 1. **Record the ~3-minute demo** per `demo-script.md` — filmable in Slack, since the room works, and the audit log now exists to show on camera. Saturday cutoff: 09:00 EST stop filming new material.
-2. **Blog:** the draft (`blog-draft.md`) has both [PENDING] notes resolved (Test 5 re-run PASS, Slack Test 1 PASS) plus the Tests 6–7 update. Edit/approve the text, then publish. The outline-replacement approval for `blog-outline.md` is still open but no longer blocks the draft.
+2. **Blog:** the draft (`blog-draft.md`) has both [PENDING] notes resolved (Test 5 re-run PASS, Slack Test 1 PASS) plus the Tests 6–7 update. Edit/approve the text, then publish. The stale original outline was archived Nov 7, so the outline question is closed.
 3. **Submit before Sat Nov 7, 1:29pm EST** (repo + demo video + README + blog link) at https://www.wemakedevs.org/hackathons/switch/submit — the page is confirmed to load; sign in with the WeMakeDevs account, confirm what the form asks for, and confirm the submission went through. Aim for 12:30pm EST; do not leave it to the last hour.
 
 ## 6. Tools, software, and bots used
@@ -105,4 +101,4 @@ No tokens, passwords, or credential values are in this repo. Slack Bot/App-level
 - Room: **support-triage**, bridged to Slack channel **C0CENU6FQNS** ("Switch console bot" connection). Participants: support-triager + user.
 - Test tickets are posted in Slack as `@support-triager please triage this ticket: ` + ticket body. (The @-mention is plain text — agents are not Slack users, so it does not highlight — but Switch routes every room message to the room agent.)
 - Guardrails that must never be broken: human approval before anything reaches a customer; no invented order status, refund, fix date, policy, settings path, version, or root cause; never ask for passwords, full card numbers, CVV, or one-time codes (payment: order ID only); bypass requests refused politely; approved drafts appended to `triage-log.md`.
-- Loose ends: confirm the exposed App Configuration Token from Nov 5, 01:11 was deleted on the Slack API apps page (still unverified); fix or leave the stale Mattermost wording in `setup-checklist.md` (internal only); the submit page (https://www.wemakedevs.org/hackathons/switch/submit) is confirmed to load but still needs opening with the WeMakeDevs account to confirm its fields.
+- Loose ends: confirm the exposed App Configuration Token from Nov 5, 01:11 was deleted on the Slack API apps page (still unverified); the submit page (https://www.wemakedevs.org/hackathons/switch/submit) is confirmed to load but still needs opening with the WeMakeDevs account to confirm its fields.
