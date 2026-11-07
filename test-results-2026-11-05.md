@@ -251,7 +251,66 @@ support-triager (Codex, auto on, bypass off) + jbrijeshkumar.
   Test 1 in direct chat, then Test 1 in Slack #support-triage once.
   Then: approve one draft in-room/in-chat so `triage-log.md` exists,
   record the demo, write the blog, submit before Sat Nov 7, 1:29pm
-  EST. Submission portal found Nov 6: https://www.wemakedevs.org/hackathons/switch/submit
-  (resolved from the WeMakeDevs LinkedIn "Submit now" short link;
-  the page itself has not been opened successfully yet — a WeMakeDevs
-  account sign-in is expected).
+  EST. Submission portal confirmed to load Nov 6 (page title "Submit a
+  project | Flip the Switch Hackathon"; the form itself needs a WeMakeDevs
+  sign-in, fields unverified).
+
+## Severity fix applied + full re-run — Sat Nov 7, 00:26–00:55 EST
+- User gave the go-ahead at 00:26 EST to retry the check. Switch
+  Console was not running on the Mac and had to be relaunched.
+  Switch-buddy's reply to the severity-fix request ("Used 6 tools 1
+  failed"): get_my_context, get_agent_detail, update_agent_detail
+  (NO failure marker — the Critical sentence IS applied to the live
+  agent), list_managed_agents, connect_to_room, post_message Failed
+  (the known admin-context room-posting failure, not the agent
+  update).
+- Test 5 re-run in direct chat ~00:29 EST: **PASS.** Severity now
+  **Critical** — "the reported unfamiliar login is unauthorized
+  access, which is a security incident; whether data was taken is
+  unconfirmed." Same four-part triage, same good checklist and
+  holding draft. The wording fix worked.
+- Test 3 re-run in direct chat ~00:33 EST: **PASS** (second pass).
+  High, order ID / posted-vs-pending / dates-and-amounts checklist
+  with "do not share card numbers or security codes", holding draft,
+  no refund promise or timeline.
+- Test 2 in direct chat ~00:38 EST: **PASS.** Medium ("blocking app
+  use, but the scope and impact are not yet known"), long specific
+  checklist (which app/service, what happens + error message, when
+  started, device/OS, one vs multiple users), clarifying draft, no
+  diagnosis.
+- Test 1 in direct chat ~00:43 EST: **PASS.** Summary (crash on
+  submit after yesterday's update, cart may be lost ahead of
+  tomorrow's event), **High** ("the reported cart loss is apparent
+  data loss; escalate while holding"), checklist (app + phone
+  model/OS, app version, when update/crash began, whether cart
+  missing vs appears unavailable + whether an order was submitted,
+  steps/error), holding draft ("We can't confirm whether the cart
+  can be restored or whether an order was submitted"). No fix-time
+  or recovery promise.
+- **Direct-chat scorecard with the fresh triager is now 6/6: Test 1
+  PASS, Test 2 PASS, Test 3 PASS (x2), Test 4 PASS, Test 5 PASS
+  (re-run), bypass PASS.**
+
+## Test 1 in Slack #support-triage with the fresh agent — PASSED 12:47 AM EST Nov 7
+- Posted 12:47:39 AM: "@support-triager please triage this ticket:
+  HELP!!! app crashing?? …" Triager replied in a thread: 12:47:40
+  AM "Starting a session to handle this — one moment." then the full
+  triage at 12:47:59 AM (worked 17s, 2 tool calls).
+- Verbatim triage: Summary — app crashes on submit after an update,
+  cart lost, event tomorrow. Severity **High** — "reported apparent
+  data loss without a stated security incident; escalate while
+  holding only." Checklist: phone model/OS version, app version +
+  when update installed, exact crash behavior/error text, whether
+  cart still missing after reopening (do not imply recoverable),
+  order ID if an order may have been submitted. Draft labelled "for
+  human review (not sent)": holding reply, "We can't confirm the
+  cart's status yet, but we'll review the report." No fix-time or
+  recovery promise.
+- QA SCORE Test 1 (Slack, fresh agent): **PASS.** First Slack-room
+  pass ever. The "Not connected to a room" binding failure is GONE
+  for the fresh agent — no error, full four-part triage delivered in
+  the room. The demo can be filmed in Slack; the blog's pending
+  Slack note resolves as a pass.
+- Still to do: approve one draft in-room/in-chat so triage-log.md
+  exists, record the ~3-min demo, finish the blog (both [PENDING]
+  notes now resolvable), submit before Sat Nov 7, 1:29pm EST.

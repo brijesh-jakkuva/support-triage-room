@@ -1,6 +1,6 @@
 # Blog draft — "I Built a Support Room Where the AI Drafts and a Human Decides"
 
-**Review copy only — written Fri Nov 6, 2026, from `blog-outline-corrected-draft.md`. Not published. Do not publish until the two pending outcomes in §3 and §5 are resolved and the bracketed notes are replaced with what actually happened.**
+**Review copy only — written Fri Nov 6, 2026, from `blog-outline-corrected-draft.md`. Not published. Both pending outcomes are now resolved (see the update notes below) — review the text and publish when ready.**
 
 Best Blog is judged on clarity, accuracy, and how much it helps a first-time Switch user, so this is written for that reader. Every result below is from the test log in this repo (`test-results-2026-11-05.md`); nothing here is claimed from a run that did not happen.
 
@@ -38,7 +38,7 @@ If your Switch room is silent, check channel membership before you rebuild anyth
 
 Then I made it worse, and this is the part worth learning from. An instruction fix meant to make the agent reply in-chat instead of routing through the room silenced it entirely — it stopped answering in direct chat too, and undoing the change did not bring it back. Patching a stuck agent's instructions is a known way to make things worse. What worked was a clean delete-and-recreate from the original template: the UI delete went through, a fresh `support-triager` was created on Nov 6 at 00:26 EST, its `connect_to_room` succeeded at creation, and it greeted in direct chat.
 
-> **[PENDING — update before publishing: the fresh agent has not yet been proven in Slack. One Test 1 attempt in `#support-triage` is still to run. If it fails the same way, the demo stays in Console direct chat and this post says so plainly. Never present direct-chat footage as Slack-room footage.]**
+> **Update, Sat Nov 7, 00:47 EST: the fresh agent has now been proven in Slack. Test 1 posted in `#support-triage` at 12:47:39 AM got the full four-part triage in a thread reply at 12:47:59 AM — summary, High severity ("reported apparent data loss without a stated security incident; escalate while holding only"), missing-info checklist, and a draft labelled "for human review (not sent)". No "Not connected to a room" error. The binding failure is gone, and the demo can be filmed in Slack.**
 
 ## Five tickets, five lessons
 
@@ -51,7 +51,7 @@ The test corpus (`test-corpus.md`) is five tickets plus one bypass attempt, each
 
 One more fix from the same week, because it kept making tests "fail" depending on which document you scored against: the template used to say data loss is Critical, while the corpus expected a lost cart to be High. The corrected rule is that Critical is only for security / unauthorised access or confirmed data loss or a breach; a cart that *appears* lost after a crash, with no security incident, is High, escalating holding-only, never claiming it is recoverable. Test 1 stays High; Test 5 stays Critical.
 
-> **[PENDING — update before publishing: Test 5 re-run (plus Test 3, per the QA rule of re-running the failed ticket and one previously passing ticket), Test 2, and Test 1 in direct chat with the fresh agent are still to run. Replace this note with the results.]**
+> **Update, Sat Nov 7, ~00:29–00:43 EST: all re-runs passed. Test 5 now says Critical ("the reported unfamiliar login is unauthorized access, which is a security incident; whether data was taken is unconfirmed"). Test 3 passed again (High, holding draft, no refund promise). Test 2 passed (Medium, long clarifying checklist, no diagnosis). Test 1 passed in direct chat too (High, "the reported cart loss is apparent data loss; escalate while holding", holding draft with no recovery promise). The fresh agent's direct-chat scorecard is 6/6: Tests 1–5 plus the bypass test.**
 
 ## What I would do next
 

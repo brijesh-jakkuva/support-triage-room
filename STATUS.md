@@ -1,6 +1,6 @@
 # STATUS — where this project stands (read this first)
 
-**Last updated: Fri Nov 6, 2026, 07:15 EST. Deadline: Sat Nov 7, 1:29pm EST.**
+**Last updated: Sat Nov 7, 2026, 01:00 EST. Deadline: Sat Nov 7, 1:29pm EST.**
 
 This file is the handover. If you just opened this repo, start here: it says
 what we are building, what is done, what is broken, what is left, and exactly
@@ -37,7 +37,9 @@ never claim the data is recoverable or safe.**
 | `triage-room.template.yaml` | The Switch room template (single `support-triager` agent, Codex, auto on, bypass off). The spec of record. |
 | `test-corpus.md` | 5 test tickets + 1 bypass negative test, with expected severities. |
 | `qa-checklist.md` | Pass/fail boxes every triager reply must satisfy. |
-| `test-results-2026-11-05.md` | The full dated test log, Nov 4–Nov 6, 00:52 EST. The evidence. |
+| `test-results-2026-11-05.md` | The full dated test log, Nov 4–Nov 7, 01:00 EST. The evidence. |
+| `blog-draft.md` | Full Best Blog draft (~1,500 words, review copy, not published). Both [PENDING] notes resolved Nov 7, 01:00 EST (Test 5 re-run PASS, Slack Test 1 PASS). |
+| `saturday-run-sheet.md` | Timeboxed submit-by-12:30pm EST plan for Sat Nov 7, with cutoffs and fallbacks. |
 | `submission-checklist.md` | What submission needs: public repo (done), demo video, README, blog. Submission portal found Nov 6: https://www.wemakedevs.org/hackathons/switch/submit |
 | `demo-script.md` | ~3-minute demo beats (messy ticket live, edited draft + approval on camera, bypass refusal, audit log). |
 | `blog-outline.md` | Original blog outline — **stale** (still has the old Mattermost wording). Do not write from it. |
@@ -58,27 +60,24 @@ never claim the data is recoverable or safe.**
 - **Slack inbound delivery** — fixed Nov 5, 01:56 EST. Root cause was membership: Agent Switch had been dropped from #support-triage when Slack was disconnected; re-adding it restored delivery. Verified: `!assign-agent` and Test 1 both reached the triager within seconds/minutes.
 - **Slack app side** — fully verified: Agent Switch is the only app in the workspace, `groups:history` scope present, exactly 4 bot events subscribed (`message.channels`, `message.groups`, `message.im`, `message.mpim`), Socket Mode + Events on.
 - **Triage logic itself** — Test 1 passed in Console direct chat on Nov 4 (full four-part triage, correct severity, checklist, holding draft). The agent knows how to triage; the failures below are delivery/binding failures, not triage failures.
-- **Fresh support-triager (created Nov 6, 00:26 EST, Running)** — the UI delete worked, and the fresh agent created from the original spec passes in direct chat: **Test 3 PASSED** (double charge, High, holding draft, no refund promise), **Test 4 PASSED** (email change, Low, no invented settings path), **bypass test PASSED** (explicit refusal to send without human approval). Test 5 failed on severity only (High, should be Critical) — see §4.
-- **This repo** — public at https://github.com/brijesh-jakkuva/support-triage-room. Test results through 00:52 EST Nov 6 and the Test 5 template wording fix are committed locally (Nov 6, 07:15 EST) and awaiting push.
+- **Fresh support-triager (created Nov 6, 00:26 EST, Running)** — the UI delete worked, and the fresh agent created from the original spec now passes **everything**: direct chat **6/6 — Test 1 PASS, Test 2 PASS, Test 3 PASS (x2), Test 4 PASS, Test 5 PASS (re-run, Critical), bypass PASS** — and **Test 1 in Slack #support-triage PASSED at 12:47 AM Nov 7** (full four-part triage in the room, High severity, holding draft labelled "for human review (not sent)"). The "Not connected to a room" binding failure is gone. The demo can be filmed in Slack.
+- **This repo** — public at https://github.com/brijesh-jakkuva/support-triage-room. Test results, STATUS, and blog draft through Nov 7, 01:00 EST are committed locally and pushed (see §5).
 
 ## 4. What is broken (the live problem)
 
-**Two things remain open; the "silent triager" problem is fixed.**
+**Nothing is currently broken.** Both live problems from Nov 6 are resolved:
 
-- **Test 5 severity (direct chat).** The fresh triager called the unauthorised-login ticket **High** instead of **Critical**, reasoning that data access was "unconfirmed". The template wording was fixed at 00:47 EST Nov 6 ("unfamiliar login… is Critical even when it is not yet confirmed whether any data was taken; 'unconfirmed' never downgrades a security incident") and switch-buddy was asked to add that sentence to the live agent. The check for switch-buddy's reply **stalled at 00:52 EST** — the Mac approval timed out, nothing ran — and is awaiting the user's go-ahead to retry. Then re-run Test 5 plus Test 3.
-- **Slack room posting — still untested with the fresh agent.** The old triager failed 3x with "Not connected to a room" (its session `room_id` was null). The fresh agent's `connect_to_room` succeeded at creation, but no ticket has been posted to it in #support-triage yet. One attempt: post Test 1 in Slack; if it fails the same way, the demo stays direct-chat and the blog documents the bug. **Never present direct-chat footage as Slack-room footage.**
-- Resolved overnight: the triager is no longer silent (Tests 3, 4, bypass pass in direct chat); the delete-and-recreate is complete (delete confirmed 00:21 EST, fresh agent created 00:26 EST).
+- **Test 5 severity — FIXED and verified.** The template wording fix was applied to the live agent (switch-buddy, `update_agent_detail`, no failure marker, verified Nov 7, 00:28 EST). The Test 5 re-run at ~00:29 EST says **Critical** with the exact corrected reasoning ("unauthorized access, which is a security incident; whether data was taken is unconfirmed").
+- **Slack room posting — FIXED and verified.** The fresh agent's Test 1 in #support-triage at 12:47 AM Nov 7 delivered the full four-part triage in the room (thread reply, 17s). No "Not connected to a room" error. The binding failure that blocked Nov 4–5 is gone.
+
+What is still missing is not a bug: no draft has ever been approved, so `triage-log.md` does not exist yet; the demo video is not filmed; the blog is a review draft, not published. See §5.
 
 ## 5. What is pending (in order)
 
-1. **Retry the severity-fix check** (user go-ahead needed — the last attempt timed out on the Mac approval at 00:52 EST): read switch-buddy's reply on adding the Test 5 Critical sentence to the live agent.
-2. **Re-run Test 5 plus Test 3** in direct chat with the fresh triager; score against `qa-checklist.md`. Then re-run Test 2 (vague ticket) and Test 1 in direct chat.
-3. **Try Test 1 in Slack #support-triage once.** If it fails with "Not connected to a room" again, the demo stays direct-chat and the blog documents the bug. **Never present direct-chat footage as Slack-room footage.**
-4. **Get one draft approved in-room/in-chat** so `triage-log.md` is created (the demo's audit-log slot is empty until then — no draft has ever been approved).
-5. **Record the ~3-minute demo** per `demo-script.md`.
-6. **Blog (Fri Nov 6):** approve `blog-outline-corrected-draft.md` to replace `blog-outline.md`, then write the post. Do not publish until the binding outcome is resolved one way or the other.
-7. **Push the local commits to GitHub** (test results + STATUS + template fix are committed locally, not yet pushed).
-8. **Submit before Sat Nov 7, 1:29pm EST** (repo + demo video + README + blog link) at https://www.wemakedevs.org/hackathons/switch/submit — found Nov 6 via the WeMakeDevs LinkedIn "Submit now" link; the submit page itself has not been opened successfully yet, so sign in with the WeMakeDevs account and confirm the submission went through. Do not leave submission to the last hour.
+1. **Get one draft approved in-room/in-chat** so `triage-log.md` is created (the demo's audit-log slot is empty until then — no draft has ever been approved). The Test 1 Slack draft (12:47 AM Nov 7) is the natural candidate; approve it in the thread, or save the approval for the demo filming.
+2. **Record the ~3-minute demo** per `demo-script.md` — now filmable in Slack, since the room works. Saturday cutoff: 09:00 EST stop filming new material.
+3. **Blog:** the draft (`blog-draft.md`) has both [PENDING] notes resolved (Test 5 re-run PASS, Slack Test 1 PASS). Edit/approve the text, then publish. The outline-replacement approval for `blog-outline.md` is still open but no longer blocks the draft.
+4. **Submit before Sat Nov 7, 1:29pm EST** (repo + demo video + README + blog link) at https://www.wemakedevs.org/hackathons/switch/submit — the page is confirmed to load; sign in with the WeMakeDevs account, confirm what the form asks for, and confirm the submission went through. Aim for 12:30pm EST; do not leave it to the last hour.
 
 ## 6. Tools, software, and bots used
 
@@ -86,7 +85,7 @@ never claim the data is recoverable or safe.**
 |---|---|---|
 | **Switch Console** | 0.40.1, macOS Apple Silicon, in /Applications | The desktop app; runs the local Switch server, agents, rooms, and direct chats. |
 | **switch-buddy-admin** | Agent, Codex, on this computer, Running | The admin assistant inside Console. Creates/updates agents and rooms, runs diagnostics. It created the triager and the room, and attempted the bind, restart, instruction fix, revert, and delete. Its replies in Console usually show only a "Used N tools" header — expand it to see which tools ran and which failed. |
-| **support-triager** | Agent, Codex, auto on, bypass off, fresh folder | The triage agent. The product. Fresh agent created Nov 6, 00:26 EST; Tests 3, 4 and bypass pass in direct chat; Test 5 severity fix pending re-run. |
+| **support-triager** | Agent, Codex, auto on, bypass off, fresh folder | The triage agent. The product. Fresh agent created Nov 6, 00:26 EST; direct chat 6/6 (Tests 1–5 + bypass) and Slack Test 1 PASS Nov 7, 12:47 AM. |
 | **Codex CLI** | `/Users/brijeshjakkuva/.local/bin/codex`, signed in locally | The working AI provider behind both agents. |
 | **Claude Code CLI** | `/Users/brijeshjakkuva/.local/bin/claude` | Tried first; Console does not see its terminal login and its sign-in requires Max/Ultra/Pro. Not connected. Do not buy a plan for this. |
 | **Slack — personal workspace "Light Bot"** | Team `T0CEKDQ647P`, user `jbrijeshkumar` (display name Storm) | The demo chat surface. A brand-new personal workspace, not the org workspace. |
@@ -105,4 +104,4 @@ No tokens, passwords, or credential values are in this repo. Slack Bot/App-level
 - Room: **support-triage**, bridged to Slack channel **C0CENU6FQNS** ("Switch console bot" connection). Participants: support-triager + user.
 - Test tickets are posted in Slack as `@support-triager please triage this ticket: ` + ticket body. (The @-mention is plain text — agents are not Slack users, so it does not highlight — but Switch routes every room message to the room agent.)
 - Guardrails that must never be broken: human approval before anything reaches a customer; no invented order status, refund, fix date, policy, settings path, version, or root cause; never ask for passwords, full card numbers, CVV, or one-time codes (payment: order ID only); bypass requests refused politely; approved drafts appended to `triage-log.md`.
-- Loose ends: confirm the exposed App Configuration Token from Nov 5, 01:11 was deleted on the Slack API apps page (still unverified); fix or leave the stale Mattermost wording in `setup-checklist.md` (internal only); the submit page (https://www.wemakedevs.org/hackathons/switch/submit) still needs opening with the WeMakeDevs account to confirm its fields.
+- Loose ends: confirm the exposed App Configuration Token from Nov 5, 01:11 was deleted on the Slack API apps page (still unverified); fix or leave the stale Mattermost wording in `setup-checklist.md` (internal only); the submit page (https://www.wemakedevs.org/hackathons/switch/submit) is confirmed to load but still needs opening with the WeMakeDevs account to confirm its fields.
