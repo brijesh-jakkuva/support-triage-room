@@ -1,6 +1,6 @@
 # STATUS — where this project stands (read this first)
 
-**Last updated: Sat Nov 7, 2026, 01:30 EST. Deadline: Sat Nov 7, 1:29pm EST.**
+**Last updated: Sat Nov 7, 2026, 01:45 EST. Deadline: Sat Nov 7, 1:29pm EST.**
 
 This file is the handover. If you just opened this repo, start here: it says
 what we are building, what is done, what is broken, what is left, and exactly
@@ -37,7 +37,7 @@ never claim the data is recoverable or safe.**
 | `triage-room.template.yaml` | The Switch room template (single `support-triager` agent, Codex, auto on, bypass off). The spec of record. |
 | `test-corpus.md` | 7 test tickets + 1 bypass negative test, with expected severities. Tests 6 (exposed secret) and 7 (hallucination trap) added Nov 7, 01:00 EST. |
 | `qa-checklist.md` | Pass/fail boxes every triager reply must satisfy. Secret-detection, grounding, and severity-calibration boxes added Nov 7. |
-| `test-results-2026-11-05.md` | The full dated test log, Nov 4–Nov 7, 01:30 EST. The evidence. |
+| `test-results-2026-11-05.md` | The full dated test log, Nov 4–Nov 7, 01:45 EST. The evidence. |
 | `blog-draft.md` | Full Best Blog draft (~1,500 words, review copy, not published). Both [PENDING] notes resolved Nov 7, 01:00 EST (Test 5 re-run PASS, Slack Test 1 PASS). |
 | `saturday-run-sheet.md` | Timeboxed submit-by-12:30pm EST plan for Sat Nov 7, with cutoffs and fallbacks. |
 | `submission-checklist.md` | What submission needs: public repo (done), demo video, README, blog. Submission portal found Nov 6: https://www.wemakedevs.org/hackathons/switch/submit |
@@ -61,7 +61,8 @@ never claim the data is recoverable or safe.**
 - **Slack app side** — fully verified: Agent Switch is the only app in the workspace, `groups:history` scope present, exactly 4 bot events subscribed (`message.channels`, `message.groups`, `message.im`, `message.mpim`), Socket Mode + Events on.
 - **Triage logic itself** — Test 1 passed in Console direct chat on Nov 4 (full four-part triage, correct severity, checklist, holding draft). The agent knows how to triage; the failures below are delivery/binding failures, not triage failures.
 - **Fresh support-triager (created Nov 6, 00:26 EST, Running)** — the UI delete worked, and the fresh agent created from the original spec now passes **everything**: direct chat **8/8 — Tests 1–7 PASS, bypass PASS** — and **Test 1 in Slack #support-triage PASSED at 12:47 AM Nov 7** (full four-part triage in the room, High severity, holding draft labelled "for human review (not sent)"). The "Not connected to a room" binding failure is gone. The demo can be filmed in Slack.
-- **Two new guardrails, live and proven (Nov 7, 01:00–01:30 EST)** — secret detection (an exposed password/API key/token/card in a ticket is flagged, never repeated, customer advised to rotate it; Test 6 PASS) and grounding (every claim must come from the ticket text, gaps go in the checklist; Test 7 hallucination trap PASS after one severity-calibration fix — Low to Medium, then Test 5 regression still Critical).
+- **Two new guardrails, live and proven (Nov 7, 01:00–01:30 EST)** — secret detection (an exposed password/API key/token/card in a ticket is flagged, never repeated, customer advised to rotate it; Test 6 PASS) and grounding (every claim must come from the ticket text, gaps go in the checklist; Test 7 hallucination trap PASS after one severity-calibration fix — Low to Medium, then Test 5 regression still Critical). **Test 6 also PASSED in Slack** (user-posted 1:35 AM, directly observed): full triage in the channel, High, no password repetition.
+- **Human gate + audit log proven end to end (Nov 7, ~01:40 EST).** The Test 1 Slack draft was approved in its thread ("Approved — this draft is good as-is. Please log it to triage-log.md.") and the triager replied "Logged the approved cart-loss ticket draft to triage-log.md." **triage-log.md now exists** (agent-confirmed).
 - **This repo** — public at https://github.com/brijesh-jakkuva/support-triage-room. Test results, STATUS, and blog draft through Nov 7, 01:00 EST are committed locally and pushed (see §5).
 
 ## 4. What is broken (the live problem)
@@ -71,14 +72,13 @@ never claim the data is recoverable or safe.**
 - **Test 5 severity — FIXED and verified.** The template wording fix was applied to the live agent (switch-buddy, `update_agent_detail`, no failure marker, verified Nov 7, 00:28 EST). The Test 5 re-run at ~00:29 EST says **Critical** with the exact corrected reasoning ("unauthorized access, which is a security incident; whether data was taken is unconfirmed").
 - **Slack room posting — FIXED and verified.** The fresh agent's Test 1 in #support-triage at 12:47 AM Nov 7 delivered the full four-part triage in the room (thread reply, 17s). No "Not connected to a room" error. The binding failure that blocked Nov 4–5 is gone.
 
-What is still missing is not a bug: no draft has ever been approved, so `triage-log.md` does not exist yet; the demo video is not filmed; the blog is a review draft, not published. See §5.
+What is still missing is not a bug: the demo video is not filmed; the blog is a review draft, not published. The audit log now exists (see §3). See §5.
 
 ## 5. What is pending (in order)
 
-1. **Get one draft approved in-room/in-chat** so `triage-log.md` is created (the demo's audit-log slot is empty until then — no draft has ever been approved). The Test 1 Slack draft (12:47 AM Nov 7) is the natural candidate; approve it in the thread, or save the approval for the demo filming.
-2. **Record the ~3-minute demo** per `demo-script.md` — now filmable in Slack, since the room works. Saturday cutoff: 09:00 EST stop filming new material.
-3. **Blog:** the draft (`blog-draft.md`) has both [PENDING] notes resolved (Test 5 re-run PASS, Slack Test 1 PASS). Edit/approve the text, then publish. The outline-replacement approval for `blog-outline.md` is still open but no longer blocks the draft.
-4. **Submit before Sat Nov 7, 1:29pm EST** (repo + demo video + README + blog link) at https://www.wemakedevs.org/hackathons/switch/submit — the page is confirmed to load; sign in with the WeMakeDevs account, confirm what the form asks for, and confirm the submission went through. Aim for 12:30pm EST; do not leave it to the last hour.
+1. **Record the ~3-minute demo** per `demo-script.md` — filmable in Slack, since the room works, and the audit log now exists to show on camera. Saturday cutoff: 09:00 EST stop filming new material.
+2. **Blog:** the draft (`blog-draft.md`) has both [PENDING] notes resolved (Test 5 re-run PASS, Slack Test 1 PASS) plus the Tests 6–7 update. Edit/approve the text, then publish. The outline-replacement approval for `blog-outline.md` is still open but no longer blocks the draft.
+3. **Submit before Sat Nov 7, 1:29pm EST** (repo + demo video + README + blog link) at https://www.wemakedevs.org/hackathons/switch/submit — the page is confirmed to load; sign in with the WeMakeDevs account, confirm what the form asks for, and confirm the submission went through. Aim for 12:30pm EST; do not leave it to the last hour.
 
 ## 6. Tools, software, and bots used
 
