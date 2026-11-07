@@ -1,6 +1,6 @@
 # STATUS — where this project stands (read this first)
 
-**Last updated: Sat Nov 7, 2026, 01:45 EST. Deadline: Sat Nov 7, 1:29pm EST.**
+**Last updated: Sat Nov 7, 2026, ~07:15 EST. Deadline: Sat Nov 7, 1:29pm EST.**
 
 This file is the handover. If you just opened this repo, start here: it says
 what we are building, what is done, what is broken, what is left, and exactly
@@ -68,13 +68,12 @@ Archived Nov 7, 2026 — kept locally in `~/workspace/support-triage-room-archiv
 - **Test 5 severity — FIXED and verified.** The template wording fix was applied to the live agent (switch-buddy, `update_agent_detail`, no failure marker, verified Nov 7, 00:28 EST). The Test 5 re-run at ~00:29 EST says **Critical** with the exact corrected reasoning ("unauthorized access, which is a security incident; whether data was taken is unconfirmed").
 - **Slack room posting — FIXED and verified.** The fresh agent's Test 1 in #support-triage at 12:47 AM Nov 7 delivered the full four-part triage in the room (thread reply, 17s). No "Not connected to a room" error. The binding failure that blocked Nov 4–5 is gone.
 
-What is still missing is not a bug: the demo video is not filmed; the blog is a review draft, not published. The audit log now exists (see §3). See §5.
+What is still missing is not a bug: the blog is a review draft, not published. The demo video is done — filmed, voiced, and live on YouTube (Unlisted, https://youtu.be/BuYkjm2ip-Q), linked in the README; repo pushed at commit `d9af7a5`. The audit log now exists (see §3). See §5.
 
 ## 5. What is pending (in order)
 
-1. **Record the ~3-minute demo** per `demo-script.md` — filmable in Slack, since the room works, and the audit log now exists to show on camera. Saturday cutoff: 09:00 EST stop filming new material.
-2. **Blog:** the draft (`blog-draft.md`) has both [PENDING] notes resolved (Test 5 re-run PASS, Slack Test 1 PASS) plus the Tests 6–7 update. Edit/approve the text, then publish. The stale original outline was archived Nov 7, so the outline question is closed.
-3. **Submit before Sat Nov 7, 1:29pm EST** (repo + demo video + README + blog link) at https://www.wemakedevs.org/hackathons/switch/submit — the page is confirmed to load; sign in with the WeMakeDevs account, confirm what the form asks for, and confirm the submission went through. Aim for 12:30pm EST; do not leave it to the last hour.
+1. **Blog:** the draft (`blog-draft.md`) has both [PENDING] notes resolved (Test 5 re-run PASS, Slack Test 1 PASS) plus the Tests 6–7 update, and now links the demo video. One stale line fixed Nov 7, ~07:15 EST (Test 5 "re-run is pending" → passed). Read/approve the text, pick where to publish it (no platform chosen yet), then publish. Cutoff 10:00 EST. Once published, add the blog link to the README and push.
+2. **Submit before Sat Nov 7, 1:29pm EST** (repo + demo video + README + blog link) at https://www.wemakedevs.org/hackathons/switch/submit — the page is confirmed to load; sign in with the WeMakeDevs account, confirm what the form asks for, and confirm the submission went through. Aim for 12:30pm EST; do not leave it to the last hour.
 
 ## 6. Tools, software, and bots used
 
