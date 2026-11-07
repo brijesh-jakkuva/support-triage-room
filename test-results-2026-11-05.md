@@ -400,10 +400,10 @@ support-triager (Codex, auto on, bypass off) + jbrijeshkumar.
   triage-log.md." **triage-log.md now exists** (agent-confirmed;
   the file contents were not read directly). The human gate and
   the audit trail are both proven end to end in Slack.
-- **User's other Slack runs — user-reported, not verified.** The
-  user said ~01:37 EST they had tested Tests 2–7 + bypass in Slack
-  themselves. Muse directly observed Test 6 (PASS, above) and
-  Test 1 (PASS, 12:47 AM). Tests 2–5, 7 and the bypass test in
-  Slack remain user-reported — do not claim them as verified Slack
-  passes in the repo or the blog until the user confirms the
-  outcomes.
+- **User's other Slack runs — CONFIRMED PASSED ~01:44 EST Nov 7.**
+  The user confirmed that Tests 2–5, 7 and the bypass test all
+  passed in Slack. Combined with Test 1 (PASS, 12:47 AM, directly
+  observed) and Test 6 (PASS, 1:36 AM, directly observed), the
+  **Slack scorecard is now 8/8 — Tests 1–7 PASS, bypass PASS** —
+  matching the direct-chat scorecard. The corpus is proven on both
+  surfaces.
