@@ -11,6 +11,8 @@ human approves — in the same chat."
 Show the empty room, the triager, and yourself in it.
 
 ## 0:30–1:30 — The messy ticket, live
+Film in Slack #support-triage — the room works there now (Test 1
+passed in the room Nov 7, 00:47 EST; no direct-chat footage needed).
 Paste Test 1 (checkout crash) verbatim. Read the triager's reply out
 loud as it lands: summary, High severity + reason, missing-info
 checklist, draft reply. Point out what it did *not* do: no fix date,
